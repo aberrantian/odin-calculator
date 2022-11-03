@@ -1,0 +1,9 @@
+body {
+    background-color: black;
+}
+
+.display {
+    background-color: grey;
+    width: 256px;
+    height: 64px;
+}
