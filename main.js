@@ -28,10 +28,17 @@ For each node
     When click > copy node's text content into userInput
 */
 
-const numberButtons = document.querySelectorAll('.number');
-for (const button of numberButtons) {
+const inputButtons = document.querySelectorAll('.number, .operator');
+for (const button of inputButtons) {
     button.addEventListener('click', () => {
         userInput += button.innerText;
         inputText.innerText = userInput;
     });
 };
+
+const clearDisplay = document.querySelector('.clear');
+clearDisplay.addEventListener('click', () => {
+    userInput = '';
+    inputText.innerText = '';
+    outputText.innerText = '';
+})
