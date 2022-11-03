@@ -31,6 +31,7 @@ For each node
 const numberButtons = document.querySelectorAll('.number');
 for (const button of numberButtons) {
     button.addEventListener('click', () => {
-        console.log(button.textContent);
+        userInput += button.innerText;
+        inputText.innerText = userInput;
     });
 };
