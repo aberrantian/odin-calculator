@@ -22,32 +22,58 @@ let userInput = [];
 let inputText = document.querySelector('.input-text');
 let outputText = document.querySelector('.output-text');
 
-/*
-if first item is empty and input is 0 or an operator
-    do nothing
-if last item is operator and input is operator
-    update the operator
-if last item is number and input is number
-    concat input onto number
-else
-    push input into userInput
-*/
+function isOperator(input) {
+    if (input === '+' ||
+        input === '-' ||
+        input === '*' ||
+        input === '/') {
+            return true;
+        } else {
+            return false;
+        };
+};
+
+function isNumber(input) {
+    if (isOperator(input)) {
+        return false;
+    } else {
+        return true;
+    };
+};
+
 function inputHandler(innerText) {
-    userInput.push(innerText);
-    console.log(userInput[userInput.length -1]);
-    inputText.innerText = userInput.join('');
+    let lastItem = `${userInput[userInput.length -1]}`;
+    
+    if (userInput.length == 0) {
+        if (!(innerText == '0') && !(isOperator(innerText))) {
+            userInput.push(innerText);
+            inputText.innerText = userInput.join('');
+        };
+    } else {
+        if (isNumber(lastItem) && isNumber(innerText)) {
+            userInput[userInput.length -1] += innerText;
+        } else if (isOperator(lastItem) && isOperator(innerText)) {
+            userInput[userInput.length -1] = innerText;
+        } else {
+            userInput.push(innerText);
+        };
+        inputText.innerText = userInput.join('');
+    };
+
+    return;
 };
 
 const inputButtons = document.querySelectorAll('.number, .operator');
 for (const button of inputButtons) {
     button.addEventListener('click', () => {
         inputHandler(button.innerText);
+        console.log(`Clicked ${button.innerText}`);
     });
 };
 
 const clearDisplay = document.querySelector('.clear');
 clearDisplay.addEventListener('click', () => {
     userInput = [];
-    inputText.innerText = '';
-    outputText.innerText = '';
+    inputText.innerText = 'input text';
+    outputText.innerText = 'output text';
 });
