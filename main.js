@@ -18,27 +18,36 @@ function operate(a, b, c) {
     return a(b, c);
 };
 
-let userInput = '';
+let userInput = [];
 let inputText = document.querySelector('.input-text');
 let outputText = document.querySelector('.output-text');
+
 /*
-Create nodelist of number buttons
-For each node
-    Add event listener for click
-    When click > copy node's text content into userInput
+if first item is empty and input is 0 or an operator
+    do nothing
+if last item is operator and input is operator
+    update the operator
+if last item is number and input is number
+    concat input onto number
+else
+    push input into userInput
 */
+function inputHandler(innerText) {
+    userInput.push(innerText);
+    console.log(userInput[userInput.length -1]);
+    inputText.innerText = userInput.join('');
+};
 
 const inputButtons = document.querySelectorAll('.number, .operator');
 for (const button of inputButtons) {
     button.addEventListener('click', () => {
-        userInput += button.innerText;
-        inputText.innerText = userInput;
+        inputHandler(button.innerText);
     });
 };
 
 const clearDisplay = document.querySelector('.clear');
 clearDisplay.addEventListener('click', () => {
-    userInput = '';
+    userInput = [];
     inputText.innerText = '';
     outputText.innerText = '';
-})
+});
