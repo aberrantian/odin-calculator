@@ -15,7 +15,15 @@ function divide(a, b) {
 };
 
 function operate(a, b, c) {
-    return c(a, b);
+    if (c == '+') {
+        return add(a, b);
+    } else if (c == '-') {
+        return subtract(a, b);
+    } else if (c == '*') {
+        return multiply(a, b);
+    } else if (c == '/') {
+        return divide(a, b);
+    };
 };
 
 let userInput = [];
@@ -88,15 +96,7 @@ function calc() {
         if (!(isOperator(userInput[i]))) {
             continue;
         } else {
-            if (userInput[i] == '+') {
-                total += add(Number(userInput[i-1]), Number(userInput[i+1]));
-            } else if (userInput[i] == '-') {
-                total += subtract(Number(userInput[i-1]), Number(userInput[i+1]));
-            } else if (userInput[i] == '*') {
-                total += multiply(Number(userInput[i-1]), Number(userInput[i+1]));
-            } else if (userInput[i] == '/') {
-                total += divide(Number(userInput[i-1]), Number(userInput[i+1]));
-            };
+            total += operate(Number(userInput[i-1]), Number(userInput[i+1]), userInput[i]);
         };
     };
     console.log(total);
