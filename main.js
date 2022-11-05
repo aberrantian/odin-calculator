@@ -15,7 +15,7 @@ function divide(a, b) {
 };
 
 function operate(a, b, c) {
-    return a(b, c);
+    return c(a, b);
 };
 
 let userInput = [];
@@ -67,7 +67,7 @@ const inputButtons = document.querySelectorAll('.number, .operator');
 for (const button of inputButtons) {
     button.addEventListener('click', () => {
         inputHandler(button.innerText);
-        console.log(`Clicked ${button.innerText}`);
+        // console.log(`Clicked ${button.innerText}`);
     });
 };
 
@@ -76,4 +76,34 @@ clearDisplay.addEventListener('click', () => {
     userInput = [];
     inputText.innerText = 'input text';
     outputText.innerText = 'output text';
+});
+
+function calc() {
+    if (isOperator(userInput[userInput.length -1])) {
+        userInput.pop();
+    };
+    let total = 0;
+    
+    for (let i = 0; i < userInput.length -1; i++) {
+        if (!(isOperator(userInput[i]))) {
+            continue;
+        } else {
+            if (userInput[i] == '+') {
+                total += add(Number(userInput[i-1]), Number(userInput[i+1]));
+            } else if (userInput[i] == '-') {
+                total += subtract(Number(userInput[i-1]), Number(userInput[i+1]));
+            } else if (userInput[i] == '*') {
+                total += multiply(Number(userInput[i-1]), Number(userInput[i+1]));
+            } else if (userInput[i] == '/') {
+                total += divide(Number(userInput[i-1]), Number(userInput[i+1]));
+            };
+        };
+    };
+    console.log(total);
+    outputText.innerText = total;
+};
+
+const equals = document.querySelector('.equals');
+equals.addEventListener('click', () => {
+    calc();
 });
