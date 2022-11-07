@@ -75,7 +75,6 @@ const inputButtons = document.querySelectorAll('.number, .operator');
 for (const button of inputButtons) {
     button.addEventListener('click', () => {
         inputHandler(button.innerText);
-        // console.log(`Clicked ${button.innerText}`);
     });
 };
 
@@ -90,17 +89,18 @@ function calc() {
     if (isOperator(userInput[userInput.length -1])) {
         userInput.pop();
     };
-    let total = 0;
+
+    let memory = Number(userInput[0]);
     
     for (let i = 0; i < userInput.length -1; i++) {
         if (!(isOperator(userInput[i]))) {
             continue;
         } else {
-            total += operate(Number(userInput[i-1]), Number(userInput[i+1]), userInput[i]);
+            memory = operate(memory, Number(userInput[i+1]), userInput[i]);
         };
     };
-    console.log(total);
-    outputText.innerText = total;
+
+    outputText.innerText = memory;
 };
 
 const equals = document.querySelector('.equals');
