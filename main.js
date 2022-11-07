@@ -49,21 +49,21 @@ function isNumber(input) {
     };
 };
 
-function inputHandler(innerText) {
+function inputHandler(input) {
     let lastItem = `${userInput[userInput.length -1]}`;
     
     if (userInput.length == 0) {
-        if (!(innerText == '0') && !(isOperator(innerText))) {
-            userInput.push(innerText);
+        if (!(input == '0') && !(isOperator(input))) {
+            userInput.push(input);
             inputText.innerText = userInput.join('');
         };
     } else {
-        if (isNumber(lastItem) && isNumber(innerText)) {
-            userInput[userInput.length -1] += innerText;
-        } else if (isOperator(lastItem) && isOperator(innerText)) {
-            userInput[userInput.length -1] = innerText;
+        if (isNumber(lastItem) && isNumber(input)) {
+            userInput[userInput.length -1] += input;
+        } else if (isOperator(lastItem) && isOperator(input)) {
+            userInput[userInput.length -1] = input;
         } else {
-            userInput.push(innerText);
+            userInput.push(input);
         };
         inputText.innerText = userInput.join('');
     };
@@ -86,6 +86,10 @@ clearDisplay.addEventListener('click', () => {
 });
 
 function calc() {
+    if (userInput.length == 0) {
+        return;
+    };
+
     if (isOperator(userInput[userInput.length -1])) {
         userInput.pop();
     };
@@ -98,6 +102,10 @@ function calc() {
         } else {
             memory = operate(memory, Number(userInput[i+1]), userInput[i]);
         };
+    };
+
+    if (memory == 'Infinity') {
+        memory = 'Error: Can\'t divide by 0';
     };
 
     outputText.innerText = memory;
