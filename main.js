@@ -103,6 +103,28 @@ delChar.addEventListener('click', () => {
     };
 });
 
+function hasDecimal(string) {
+    for (let i = 0; i < string.length -1; i++) {
+        if (string[i] == '.') {
+            return false;
+        } else {
+            continue;
+        };
+    };
+
+    return true;
+};
+
+const decimal = document.querySelector('.decimal');
+decimal.addEventListener('click', () => {
+    if (isNumber(userInput[userInput.length-1]) &&
+    userInput[userInput.length-1].at(-1) != '.' &&
+    hasDecimal(userInput[userInput.length -1])) {
+            userInput[userInput.length-1] += '.';
+            inputText.innerText = userInput.join('');
+    };
+});
+
 function calc() {
     if (userInput.length == 0) {
         return;
