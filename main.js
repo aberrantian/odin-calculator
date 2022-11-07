@@ -85,6 +85,24 @@ clearDisplay.addEventListener('click', () => {
     outputText.innerText = 'output text';
 });
 
+const delChar = document.querySelector('.delete');
+delChar.addEventListener('click', () => {
+    if (userInput.length == 0) {
+        return;
+    } else if (isOperator(userInput[userInput.length -1])) {
+        userInput.pop();
+        inputText.innerText = userInput.join('');
+    } else {
+        if (userInput[userInput.length -1].length < 2) {
+            userInput.pop();
+            inputText.innerText = userInput.join('');
+        } else {
+            userInput[userInput.length -1] = userInput[userInput.length -1].slice(0, -1);
+            inputText.innerText = userInput.join('');
+        };
+    };
+});
+
 function calc() {
     if (userInput.length == 0) {
         return;
