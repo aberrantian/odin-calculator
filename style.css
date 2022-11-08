@@ -1,9 +1,54 @@
 body {
     background-color: black;
+    display: flex;
+    justify-content: center;
+    font-size: 3.5vh;
+    font-weight: 500;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80vh;
+    height: 80vh;
 }
 
 .display {
-    background-color: grey;
-    width: 256px;
-    height: 64px;
+    background-color: white;
+    width: 65%;
+    height: 20%;
+    text-align: end;
+}
+
+.input {
+    height: 100%;
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    flex: 1 0 auto;
+    display: flex;
+}
+
+button {
+    flex: 1 0 auto;
+    border: none;
+    background-color: lightgrey;
+    font-size: 2.5vh;
+    font-weight: 600;
+}
+
+button:hover {
+    background-color: darkgrey;
+}
+
+.number {
+    background-color: white;
+}
+
+.number:hover {
+    background-color: lightgrey;
 }
