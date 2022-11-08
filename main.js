@@ -85,6 +85,15 @@ clearDisplay.addEventListener('click', () => {
     outputText.innerText = 'output text';
 });
 
+function updateDisplay() {
+    if (userInput.length == 0) {
+        inputText.innerText = 'input text';
+        outputText.innerText = 'output text';
+    } else {
+        inputText.innerText = userInput.join('');
+    };
+};
+
 const delChar = document.querySelector('.delete');
 delChar.addEventListener('click', () => {
     if (userInput.length == 0) {
