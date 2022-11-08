@@ -98,16 +98,17 @@ const delChar = document.querySelector('.delete');
 delChar.addEventListener('click', () => {
     if (userInput.length == 0) {
         return;
-    } else if (isOperator(userInput[userInput.length -1])) {
-        userInput.pop();
-        inputText.innerText = userInput.join('');
     } else {
-        if (userInput[userInput.length -1].length < 2) {
-            userInput.pop();
-            inputText.innerText = userInput.join('');
+        if (userInput[userInput.length -1].length < 1) {
+            userInput.pop()
+            updateDisplay();
         } else {
             userInput[userInput.length -1] = userInput[userInput.length -1].slice(0, -1);
-            inputText.innerText = userInput.join('');
+            if (userInput[userInput.length -1] == '') {
+                userInput.pop();
+            };
+            updateDisplay();
+            console.log(userInput);
         };
     };
 });
