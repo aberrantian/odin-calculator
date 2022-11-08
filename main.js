@@ -78,6 +78,32 @@ for (const button of inputButtons) {
     });
 };
 
+const allButtons = document.querySelectorAll('button');
+
+function keyInput(input) {
+    for (const button of allButtons) {
+        switch (input.key) {
+            case button.innerText:
+                button.click();
+                break;
+            case 'Backspace':
+                delChar.click();
+                break;
+            case 'Delete':
+                clearDisplay.click();
+                break;
+            case 'Enter':
+                equals.click();
+                break;
+        };
+    };
+};
+
+document.addEventListener('keydown', (e) => {
+    e.preventDefault();
+    keyInput(e);
+});
+
 const clearDisplay = document.querySelector('.clear');
 clearDisplay.addEventListener('click', () => {
     userInput = [];
