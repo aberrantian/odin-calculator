@@ -1,5 +1,5 @@
 /* TODO
-- Implement order of operation (e.g 550 - 50 * 0.2 yields 100 but should yield 540)
+- Rewrite entire project using a proper design
 */
 
 function add(a, b) {
